@@ -1,14 +1,23 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {GifState} from "../context/gif-context";
 import {HiEllipsisVertical, HiMiniBars3BottomRight} from "react-icons/hi2";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
 
+  const {filter, setFilter, favorites} = GifState();
 
+  const fetchGifCategories = async () => {
+    const res = await fetch("/categories.json");
+    const {data} = await res.json();
+    setCategories(data);
+  };
 
- 
+  useEffect(() => {
+    fetchGifCategories();
+  }, []);
 
   return (
     <nav>
@@ -45,6 +54,12 @@ const Header = () => {
          
         </div>
 
+ {favorites.length > 0 && (
+            <div className="h-9 bg-gray-700 pt-1.5 px-6 cursor-pointer rounded">
+              <Link to="/favorites">Favorite GIFs</Link>
+            </div>
+          )}
+          
         {showCategories && (
           <div className="absolute right-0 top-14 px-10 pt-6 pb-9 w-full gradient z-20">
             <span className="text-3xl font-extrabold">Categories</span>

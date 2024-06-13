@@ -6,7 +6,7 @@ import GifPage from "./pages/category";
 import Category from "./pages/category";
 import SearchPage from  "./pages/search";
 import Favorites from "./pages/favourites";
-import GifProvider from "./context/git-context";
+import GifProvider from "./context/gif-context";
 
 //import horaha hai sab bass react router dom kaam nahi karraha hai 
 
