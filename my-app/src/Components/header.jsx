@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {GifState} from "../context/gif-context";
 import {HiEllipsisVertical, HiMiniBars3BottomRight} from "react-icons/hi2";
+import GifSearch from "./gif-search";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -81,7 +82,7 @@ const Header = () => {
           </div>
         )}
       </div>
-      
+      <GifSearch filter={filter} setFilter={setFilter} />
     </nav>
   );
 };
